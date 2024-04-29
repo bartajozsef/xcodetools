@@ -68,7 +68,7 @@ log stream --debug --predicate 'process == "debugserver" and eventMessage contai
     fi
 
     if [[ $line =~ .*debugserver.*Exiting ]]; then
-        killSimulatorIfNeeded $SEND_NOTIFICATION
+        killSimulatorIfNeeded $BUNDLE_ID $SEND_NOTIFICATION
     fi
 done
 
