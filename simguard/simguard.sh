@@ -14,10 +14,15 @@ killSimulatorIfNeeded()
 {
     xcrun simctl spawn booted launchctl list | grep $1
     if [ $? -eq 0 ]; then
+        message="Process $1 has stuck, shutdown Simulator..."
         if [ $2 == "true" ]; then
-            osascript -e 'display notification "Process \"$1\" has stuck,\nshutdown Simulator..." with title "SimGuard"'
+            osascript \
+                -e "on run argv" \
+                -e "display notification item 1 of argv with title \"SimGuard\"" \
+                -e "end run" \
+                -- "$message"
         fi
-        echo "Process $1 has stuck, shutdown Simulator..."
+        echo $message
         xcrun simctl shutdown booted
     fi
 }
