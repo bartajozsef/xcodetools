@@ -23,9 +23,9 @@ Unfortunately we can't hook on LLDB when debug session ends but we can hook on l
 ./simguard.sh -b "com.myapp.bundleid" -n
 ```
 
-With paramenter `-n` sends notification to destop when a shutdown was needed.
+With paramenter `-n` will send notification to desktop when a shutdown was needed.
 
-Intended to run in the background, so no need to add to your Xcode project.
+Intended to run in the background, so no need to add to your Xcode project just run from terminal or you can schedule to run at login with `LaunchAgent`
 
 ## Fixcode
 Fixcode is a script which stops all the Xcode processes and delete dervied data.
