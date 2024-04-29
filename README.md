@@ -25,3 +25,14 @@ Unfortunately we can't hook on LLDB when debug session ends but we can hook on l
 With paramenter `-n` sends notification to destop when a shutdown was needed.
 
 Intended to run in the background, so no need to add to your Xcode project.
+
+## Fixcode
+Fixcode is a script which stops all the Xcode processes and delete dervied data.
+
+Sometimes Xcode needs take a break and/or delete all the cache. Fixcode simply pgreps all "Xcode" and "xcodebuild" processes and kills them with -9.  
+If you run with `-D` it deletes everything with `rm -rf ~/Library/Developer/Xcode/DerivedData`. Its important to terminate all Xcode processes because it sometimes holds the cache and `rm` can't delete it even with `-rf` (and thats why reads old cache after you pressed CMD+SHIFT+K)
+
+```shell
+alias fixcode="~/fixcode.sh"
+alias deletederiveddata="~/fixcode.sh -D"
+```
