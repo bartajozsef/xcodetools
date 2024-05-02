@@ -9,7 +9,7 @@ In some cases (on macOS 14 with Xcode 15.2) LLDB makes processes zombie which wa
 I haven't found the root cause yet, something to do with C++ interoperability, but I haven't been able to figure out yet and neither has Apple, it seems.
 
 ### How it works
-The script will hooks on `debugserver` logs and if the LLDB server emits a message when session ends it will the process with the given bundle ID is still exist. If the process is present then it simply shuts down the simulator, so next time the debug session will start a new one and won't wait forever. Unfortunately LLDB has no event for session end so the script needs to run in the background and process the log messages.
+The script will hooks on `debugserver` logs and if LLDB server emits a message when session ends it will check the process with the given bundle ID and simply shuts down the Simulator if still exists, so next time the debug session will start a new one and won't wait forever. Unfortunately LLDB has no event for session end so the script needs to run in the background and process the log messages.
 
 ```shell
 ./simguard.sh -h
